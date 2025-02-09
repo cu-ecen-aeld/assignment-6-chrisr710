@@ -29,8 +29,8 @@ do_configure () {
 }
 
 do_compile () {
-	#oe_runmake
-	${CC} aesdsocket.c -o aesdsocket
+	oe_runmake
+	#${CC} aesdsocket.c -o aesdsocket
 }
 
 do_install () {
@@ -43,7 +43,7 @@ do_install () {
 	# See example at https://github.com/cu-ecen-aeld/ecen5013-yocto/blob/ecen5013-hello-world/meta-ecen5013/recipes-ecen5013/ecen5013-hello-world/ecen5013-hello-world_git.bb
 	
 	install -d ${D}${bindir}
-	#install -m 0755 ${S}/aesdsocket-start-stop ${D}${bindir}/
+	install -m 0755 ${S}/aesdsocket-start-stop ${D}${bindir}/
 	install -m 0755 ${S}/aesdsocket ${D}${bindir}/
 	#The -m option sets the mode (access-control bits) of the installed object(s). Directories have modes just like regular files do, and the -m option has the same meaning for installing directories as it does for installing regular files.
 	#The -d option specifies that the names specified for installation are to be taken as directories to be created, along with any missing directories in the specified path. As @jww observed in comments, the effect is analogous to that of mkdir -p
