@@ -22,7 +22,20 @@ else
 	echo "${CONFLINE} already exists in the local.conf file"
 fi
 
+cat conf/local.conf | grep 'CORE_IMAGE_EXTRA_INSTALL += "aesd-assignments_git"' >> /dev/null
+extra=$?
 
+if [ $extra -ne 0 ];then
+	echo "Append SOCKET RECIPE in the local.conf file"
+        echo 'CORE_IMAGE_EXTRA_INSTALL += "aesd-assignments_git"' >> conf/local.conf
+fi
+
+	
+        
+        
+
+
+	
 bitbake-layers show-layers | grep "meta-aesd" > /dev/null
 layer_info=$?
 
@@ -32,6 +45,6 @@ if [ $layer_info -ne 0 ];then
 else
 	echo "meta-aesd layer already exists"
 fi
-
+#
 set -e
 bitbake core-image-aesd
